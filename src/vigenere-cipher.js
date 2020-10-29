@@ -1,8 +1,10 @@
 const CustomError = require("../extensions/custom-error");
-
 class VigenereCipheringMachine {
-  encrypt() {
-    if (!message || !key) throw Error('Missing argument');		
+	constructor(type = true) {
+		this.type = type;
+	}
+  encrypt(message, key) {
+		if (!message || !key) throw Error('Missing argument');		
 		let keyString = key.repeat( Math.ceil( message.length / key.length ) ).toUpperCase(),
 				messageString = message.toUpperCase(),
 				cipherString = new Array(messageString.length);
@@ -17,8 +19,8 @@ class VigenereCipheringMachine {
 		};
     return this.type ? cipherString.join('').toUpperCase() : cipherString.reverse().join('').toUpperCase();
   }    
-  decrypt() {
-    if (!message || !key) throw Error('Missing argument');
+  decrypt(message, key) {
+		if (!message || !key) throw Error('Missing argument');
 		let keyString = key.repeat( Math.ceil( message.length / key.length ) ).toUpperCase(),
 				messageString = message.toUpperCase(),
 				cipherString = new Array(messageString.length);
@@ -32,7 +34,6 @@ class VigenereCipheringMachine {
 			}
 		};
 		return this.type ? cipherString.join('').toUpperCase() : cipherString.reverse().join('').toUpperCase();
-  
   }
 }
 
